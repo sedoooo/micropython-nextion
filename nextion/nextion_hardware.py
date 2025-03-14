@@ -29,26 +29,26 @@ class NexHardwareError(Exception):
 class NexHardware(object):
     """docstring for NexHardware"""
     def __init__(self,
-                 rx_pin: int,
-                 tx_pin: int,
+                 # rx_pin: int,
+                 # tx_pin: int,
                  uart_id: int = 1,
                  baudrate: Optional[int] = 9600,
                  timeout: Optional[int] = 100,
-                 invert: Optional[int] = 0,
+                 # invert: Optional[int] = 0,
                  logger: Optional[logging.Logger] = None) -> None:
         """
         Init hardware interface
 
-        :param      rx_pin:    The UART RX
-        :type       rx_pin:    int
-        :param      tx_pin:    The UART TX
-        :type       tx_pin:    int
+        # :param      rx_pin:    The UART RX
+        # :type       rx_pin:    int
+        # :param      tx_pin:    The UART TX
+        # :type       tx_pin:    int
         :param      baudrate:  The communication baudrate
         :type       baudrate:  int
         :param      timeout:   The communication timeout
         :type       timeout:   int
-        :param      invert:    Specify inverted communication lines
-        :type       invert:    see MicroPython UART docs
+        # :param      invert:    Specify inverted communication lines
+        # :type       invert:    see MicroPython UART docs
         :param      logger:    The logger
         :type       logger:    logging.Logger
         """
@@ -59,19 +59,19 @@ class NexHardware(object):
         self._logger = logger
         self._logger.disabled = False
 
-        self._tx_pin = tx_pin
-        self._rx_pin = rx_pin
+        # self._tx_pin = tx_pin
+        # self._rx_pin = rx_pin
         self._baudrate = baudrate
         self._timeout = timeout
-        self._invert = invert
+        # self._invert = invert
 
         self._uart = UART(
             uart_id,
-            tx=self._tx_pin,
-            rx=self._rx_pin,
+            # tx=self._tx_pin,
+            # rx=self._rx_pin,
             baudrate=self._baudrate,
-            timeout=self._timeout,
-            invert=self._invert)
+            timeout=self._timeout)
+            # invert=self._invert)
 
         self._initialized = False
 
@@ -102,11 +102,11 @@ class NexHardware(object):
         """Init UART instance"""
         if self._uart:
             self._uart.init(
-                tx=self._tx_pin,
-                rx=self._rx_pin,
+                # tx=self._tx_pin,
+                # rx=self._rx_pin,
                 baudrate=self._baudrate,
-                timeout=self._timeout,
-                invert=self._invert)
+                timeout=self._timeout)
+                # invert=self._invert)
 
     def nexInit(self) -> bool:
         """
